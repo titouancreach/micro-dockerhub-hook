@@ -4,6 +4,9 @@
 #
 ###########################################################
 
+ARG DOCKER_LOGIN=techunitee
+ARG DOCKER_PASSWORD=******
+
 # Setting the base to nodejs 10
 FROM node:10-alpine
 
@@ -24,6 +27,8 @@ RUN pip install docker-compose
 # Bundle app source
 ENV WORKDIR /src
 COPY . /src
+
+CMD docker-login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
 
 # Change working directory
 WORKDIR "/src"
